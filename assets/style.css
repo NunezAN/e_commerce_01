@@ -8,42 +8,104 @@
 
 /* NAV BAR */
 nav{
-    height: 80px;
-    display: flex;
+    height: 80px;               /*size of nav bar*/
+    display:flex            /*aligns nav objects to the right */
 }
 .nav__container{
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+    width: 100%;                /*fills nav to use 100% of the screen*/
+    max-width: 1200px;          /*allows for large screen to not be too spaced out*/
+    display: flex;              /*allows for container items to be right-left*/
+    justify-content: space-between;             /*spaced out evenly*/ 
+    align-items: center;                        /*centers obects on y-axis*/
+    margin: 0 auto;                             /*centers container*/
     padding: 0 24px;
 }
 .nav__logo{
-    width: 160px;
+    width: 160px;                       /*change nav image size*/
 }
 ul{
-    display: flex;
+    display: flex;                      /*aligh list left-right*/
 }
 li{
-    list-style-type: none;
+    list-style-type: none;              /*remove dot on list item*/
 }
 .nav__link{
-    margin-left: 16px;
-    text-decoration: none;
+    margin-left: 16px;                  /*spaces out links*/
+    text-decoration: none;              /*removes underline*/
     font-size: 20px;
     color: #7342d6;
     font-weight: bold;
-    padding: 8px;
+    padding: 8px;                       /*adds padding for border item*/
 }
 .nav__link:hover{
-    text-decoration: underline;
+    text-decoration: underline;         /*adds underline while hovering over link*/
 }
-.nav__link--primary{
+.nav__link--primary{                    /*adds box around books link*/
     border: 2px solid #7342d6;
     border-radius: 4px;
 }
-.nav__link--primary:hover{
+.nav__link--primary:hover{              /*removes underline while hovering over books link*/
     text-decoration: none;
+}
+
+#landing{                               /*change landing page background color*/
+    background-color: rgba(115, 66, 214, .1);
+}
+/* HEADER */
+header{          /* set the header size to 100% screen size vertically - size of nav (80px)*/
+    height: calc(100vh - 80px);
+}
+.text--purple{
+    color:#7342d6
+}
+.header__container{
+    width: 100%;                                /*sets container at 100% of parent*/
+    max-width: 720px;
+    margin: 0 auto;                             /*center container in parent*/
+    height: 100%;                               /*sets height to same size as parent*/
+    display: flex;             /*sets flex box to column and spaced items to top and bottom*/
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 24px;
+}
+img{
+    width: 100%;                    /*set image to same width as parent*/
+}
+h1{
+    font-size: 56px;
+    color: #7342d6;
+    margin-bottom: 24px;
+    text-align: center;
+}
+h2{
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+button{                         /*changes cursor to hand when hovering over button*/
+    cursor: pointer;
+}
+button:active{                  /* add bounce animation when clicking any button*/
+    transform: translateY(1px);
+}
+.header__button{                /*configures button*/
+    background-color: #7342d6;
+    color: white;
+    padding: 12px 24px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: none;
+}
+.header__description{           /*centers all items in the header as column*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header__img--wrapper{          /*adds padding space between img and button*/
+    padding: 20px;
+}
+.header__img{                   /*sets image to only take up max 50% of the screen*/
+    height: 100%;
+    max-height: 50vh;
+    padding: 20px;
 }
