@@ -21,6 +21,48 @@ a{
 a:hover{
   text-decoration: underline;
 }
+
+/* BURGER MENU */
+
+.button__menu{
+  background-color: transparent;
+  font-size: 40px;
+  text-align: center;
+  border: none;
+  color: #7342d6;
+}
+.menu__backdrop{
+  position: absolute;
+  background-color: #242424;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button__menu--close{
+  position:absolute;
+  right: 20px;
+  top: 10px;
+  padding: 8px;
+  color: white;
+}
+.menu__links{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.menu__list{
+  padding: 32px 0;
+}
+.menu__link{
+  font-size: 40px;
+  color: white;
+}
 /* NAV BAR */
 nav {
   height: 80px; /*size of nav bar*/
