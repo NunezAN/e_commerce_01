@@ -191,10 +191,16 @@
                 </div>
             </div>
         </section>
-        <section id="Latest">
+        <section id="books__main">
             <div class="container">
                 <div class="row">
-                    <h2 class="section__title">Latest <span class="text--purple">Books</span></h2>
+                    <h2 class="section__title">All <span class="text--purple">Books</span></h2>
+                    <select id="filter">
+                      <option value="" disabled selected>Sort</option>
+                      <option value="LOW_TO_HIGH" disabled selected>Price, Low to High</option>
+                      <option value="HIGH_TO_LOW" disabled selected>Price, High to Low</option>
+                      <option value="RATING" disabled selected></option>
+                    </select>
                     <div class="books">
                       <div class="book">
                         <figure class="book__img--wrapper">
