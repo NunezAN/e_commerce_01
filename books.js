@@ -5,11 +5,15 @@ function renderBooks(filter) {
   //filter the array of books by filter value
   //.sort() does not return a new array!!!!
   if (filter === "LOW_TO_HIGH") {
-    books.sort((a, b) => (a.originalPrice > b.originalPrice ? 1 : -1));
+    books.sort((a, b) => ((a.salePrice || a.originalPrice) > (b.salePrice || b.originalPrice) ? 1 : -1));
   } else if (filter === "HIGH_TO_LOW") {
-    books.sort((a, b) => (a.originalPrice < b.originalPrice ? 1 : -1));
+    books.sort((a, b) => ((a.salePrice || a.originalPrice) < (b.salePrice || b.originalPrice) ? 1 : -1));
   } else if (filter === "RATING") {
     books.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+  }
+  //sort by title alphabetically
+  else{
+    books.sort((a, b) => (a.title > b.title ? 1 : -1));
   }
 
   const htmlbooks = books.map((book) => {
@@ -26,9 +30,7 @@ function renderBooks(filter) {
     ${getRatingHTML(book)}
     </div>
     <div class="book__price">
-      <span class="book__price--normal">$${book.originalPrice.toFixed(
-        2
-      )}}</span>$${book.salePrice}
+    ${getSalesPrice(book)}
     </div>
   </div>`; //toFixed() to turn num into 2 decimal places
   });
@@ -61,6 +63,17 @@ function getRatingHTML(book) {
   return htmlString;  //return string
 }
 
+//function to return saleprice html string
+function getSalesPrice(book){
+  //if book has an on sale price, display both originalPrice and salePrice
+  if(book.salePrice)
+  {
+    return `<span class="book__price--normal">$${book.originalPrice.toFixed(2)}
+    </span>$${book.salePrice.toFixed(2)}`
+  }
+  //display only originalprice if there is no on-salePrice
+  return `$${book.originalPrice.toFixed(2)}`
+}
 // FAKE DATA
 function getBooks() {
   return [
@@ -151,6 +164,14 @@ function getBooks() {
       originalPrice: 30,
       salePrice: null,
       rating: 4.5,
+    },
+    {
+      id: 12,
+      title: "Can't Hurt Me",
+      url: "./assets/david goggins.jpeg",
+      originalPrice: 19.99,
+      salePrice: 17.99,
+      rating: 5,
     },
   ];
 }
