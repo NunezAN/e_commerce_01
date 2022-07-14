@@ -1,6 +1,7 @@
-let books;
+let books; //gloabl variable to hold all book objects once loaded
 
-async function renderBooks(filter) {
+//function to display all books in all books section
+async function renderBrowseBooks(filter) {
   const booksWrapper = document.querySelector(".main__books"); //access the class where want to add books html
 
   if (!books) {
@@ -52,15 +53,52 @@ async function renderBooks(filter) {
   booksWrapper.innerHTML = htmlbooks.join(""); //.join to remove array , separator and turn array into a long string
 }
 
+//function to display the book details for featured books section
+async function renderFeatureBooks(BookIds) {
+  const featurebooksWrapper = document.querySelector(".featured__books"); //access the class where want to add books html
+
+  //check if books are alredy loaded, if not display loading animation until loaded
+  if (!books) {
+    featurebooksWrapper.classList += " books__loading";
+    books = await getBooks(); //get variable for the array of books mock data
+    featurebooksWrapper.classList.remove("books__loading");
+  }
+  //create an array of filtered objects containing onlt the ids that were passed by *BookIds*
+  const filteredBooks = books.filter((book) => {
+    if (BookIds.indexOf(book.id) !== -1) {
+      return book;
+    }
+  });
+  //create a new array and map the mock data into html
+  const featuredBooks = filteredBooks.map((book) => {
+    return `<div class="book">   
+    <figure class="book__img--wrapper">
+      <img class="book__img" src="${book.url}" alt="">
+    </figure>
+    <div class="book__title">
+      ${book.title}
+    </div>
+    <div class="book__ratings">
+    ${getRatingHTML(book)}
+    </div>
+    <div class="book__price">
+    ${getSalesPrice(book)}
+    </div>
+  </div>`; //toFixed() to turn num into 2 decimal places
+  });
+  featurebooksWrapper.innerHTML = featuredBooks.join(""); //.join to remove array , separator and turn array into a long string
+}
+
 //function to let elements load before running the function to populate books
 setTimeout(() => {
-  renderBooks();
+  renderBrowseBooks();
+  renderFeatureBooks([1, 2, 12, 7]);
 });
 
 //function to filter the books displayed according to filter event
 function filterBooks(event) {
   const value = event.target.value; //getting the selected value from filter dropdown
-  renderBooks(value);
+  renderBrowseBooks(value);
 }
 
 //function that returns the html string for the stars element for the rating
@@ -114,7 +152,7 @@ function getBooks() {
           title: "Deep Work",
           url: "./assets/deep work.jpeg",
           originalPrice: 29,
-          salePrice: 12,
+          salePrice: 10.99,
           rating: 5,
         },
         {

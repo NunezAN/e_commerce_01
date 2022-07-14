@@ -280,6 +280,7 @@ button:active {
 .books {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .book {
   width: 25%;
